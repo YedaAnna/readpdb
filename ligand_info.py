@@ -2,12 +2,10 @@ import os
 import sys
 import glob
 global ligand
-import shutil
 molecule_list=[]
 molecule_list=glob.glob(os.getcwd() +'/*.pdb')# read all the molecules in a directory and adds them to a list
 for index in molecule_list:
 	print "start of molecule: " + os.path.basename(index)
-	ligand_file= open(index, 'r')
 	ligand=[]
 	chain=[]
 	lig_name=[]
