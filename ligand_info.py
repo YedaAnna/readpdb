@@ -17,8 +17,11 @@ for index in molecule_list:
       			ligand.append(column[1])
       			chain.append(column[2])
     		if column[0] == "HETNAM":
-      			if column[1].isdigit()==False:
-      				lig_name.append(column[2])
+			if column[1].isdigit()==False:
+				name_part = column[2]			
+			else:
+				name_part_two = column[3]
+				lig_name.append(name_part+name_part_two)
     		if column[0]=='REMARK':
 			if column[1]=='2':
 				if len(column)>2:
