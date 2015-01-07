@@ -1,3 +1,10 @@
+# @filename:ligand_info.py
+# @usage: python ligand_info.py >& ligand_info.txt
+# @author: YedaAnna
+# @description: Gives the list of ligands(Hetrogens) in a pdb file
+# @tags:ligand, pdb
+# @version: 1.0
+# @date: Wed Jan 07 2015
 import os
 import glob
 from collections import OrderedDict
@@ -6,7 +13,7 @@ global ligand
 start_time = time.time()
 
 
-def HET():
+def HETROGEN():
     global unique_no, unique, pdb_file
     unique_no = 0
     pdb_file = open(index, 'r')
@@ -20,6 +27,7 @@ def HET():
     unique = list(OrderedDict.fromkeys(ligand))
     unique_no = len(unique)
     print "List of unique ligands are : " + str(unique)
+    pdb_file.close()
 
 
 def RESOLUTION():
@@ -34,9 +42,10 @@ def RESOLUTION():
                     if column[2] == 'RESOLUTION.':
                         resolution = column[3]
     print "RESOLUTION of pdb is " + str(resolution) + " Angstroms"
+    pdb_file.close()
 
 
-def lig():
+def LIGAND_NAME():
     pdb_file = open(index, 'r')
     for line in pdb_file:
         column = line.split()
@@ -53,13 +62,13 @@ def lig():
                 joined2 = ' '.join(column[3:])
                 temp2 = temp + joined2
                 lig_name.append(temp2)
-
     print "Corresponding ligand name is : " + str(lig_name)
+    pdb_file.close()
 
 
 def basic_info():
-    HET()
-    lig()
+    HETROGEN()
+    LIGAND_NAME()
     RESOLUTION()
 
 molecule_list = []
@@ -73,4 +82,4 @@ for index in molecule_list:
     basic_info()
     print "End of molecule: " + os.path.basename(index) + "\n\n"
 print "End of program"
-print "time taken: " + str(time.time()-start_time) + "seconds"
+print "time taken: " + str(time.time() - start_time) + "seconds"
